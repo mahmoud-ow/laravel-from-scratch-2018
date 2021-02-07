@@ -1,7 +1,11 @@
 @extends('layout')
 
 @section('styles')
-    <style></style>
+    <style>
+        .is-completed{
+            text-decoration: line-through;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -20,13 +24,24 @@
         @if ($project->tasks->count())
             <div class="my-3">
                 @foreach ($project->tasks as $task)
-                    <li>{{ $task->description }}</li>
+
+                    <form method="POST" action="/tasks/{{$task->id}}">
+                        @method("PATCH")
+                        @csrf
+                        <div class="form-check">
+                            <input {{ $task->completed  ? 'checked' : ''}} class="form-check-input" type="checkbox" value="" id="task_{{$task->id}}" name="completed" onchange="this.form.submit()">
+                            <label class="form-check-label {{ $task->completed  ? 'is-completed' : ''}}" for="task_{{$task->id}}">
+                               {{$task->description}}
+                            </label>
+                        </div>
+                    </form>
+
                 @endforeach
             </div>
         @endif
 
 
-        
+
 
     </div>
     <!-- /.container -->
