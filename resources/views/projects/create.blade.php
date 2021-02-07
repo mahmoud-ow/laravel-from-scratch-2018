@@ -1,33 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create New Project</title>
-</head>
+@section('content')
 
-<body>
+    <div class="container">
+        <h1 class="my-5">Create Project</h1>
 
-    <h1>Create Project</h1>
+        <form action="/projects" method="POST">
+            @csrf
+            <div class="mb-3">
+                <input class="form-control" type="text" name="title" placeholder="Project Title">
+            </div>
 
-    <form action="/projects" method="POST">
-        @csrf
-        <div>
-            <input type="text" name="title" placeholder="Project Title">
-        </div>
+            <div class="mb-3">
+                <textarea class="form-control" name="description" placeholder="Project Description"></textarea>
+            </div>
 
-        <div>
-            <textarea name="description" placeholder="Project Description"></textarea>
-        </div>
+            <div>
+                <button class="btn btn-success" type="submit">Create Project</button>
+            </div>
 
-        <div>
-            <button type="submit">Create Project</button>
-        </div>
+        </form>
+    </div>
+    <!-- /.container -->
 
-    </form>
-
-</body>
-
-</html>
+@endsection

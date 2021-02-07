@@ -1,20 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout')
+@section('styles')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+    <style>
+        
+        ul{
+            list-style: none;
+        }
 
-<body>
-    <h1>Projects</h1>
+    </style>
 
-    @foreach ($projects as $project)
-        <li>{{ $project->title }}</li>
-    @endforeach
+@endsection
+@section('content')
+    <div class="container">
+        <h1 class="my-5">
+            Projects
+            <a style="font-size: 14px;margin-inline-start:20px;" class="btn btn-info btn-sm"
+                href="/projects/create">create</a>
+        </h1>
 
-</body>
-
-</html>
+        <ul>
+            @foreach ($projects as $project)
+                <li><a href="/projects/{{ $project->id }}">{{ $project->title }}</a></li>
+            @endforeach
+        </ul>
+    </div>
+    <!-- /.container -->
+@endsection
