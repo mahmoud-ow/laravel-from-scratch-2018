@@ -2,9 +2,10 @@
 
 @section('styles')
     <style>
-        .is-danger{
+        .is-danger {
             border-color: red;
         }
+
     </style>
 @endsection
 
@@ -16,27 +17,21 @@
         <form novalidate action="/projects" method="POST">
             @csrf
             <div class="mb-3">
-                <input value="{{old('title')}}" required class="form-control {{ $errors->has('title') ? 'is-danger' : '' }}" type="text" name="title" placeholder="Project Title">
+                <input required value="{{ old('title') }}" required
+                    class="form-control {{ $errors->has('title') ? 'is-danger' : '' }}" type="text" name="title"
+                    placeholder="Project Title">
             </div>
 
             <div class="mb-3">
-                <textarea required class="form-control  {{ $errors->has('description') ? 'is-danger' : '' }}" name="description" placeholder="Project Description">{{old('description')}}</textarea>
+                <textarea required class="form-control  {{ $errors->has('description') ? 'is-danger' : '' }}"
+                    name="description" placeholder="Project Description">{{ old('description') }}</textarea>
             </div>
 
             <div>
                 <button class="btn btn-success" type="submit">Create Project</button>
             </div>
 
-            <div class="container mt-4">
-                @if ($errors->any())
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                @endif
-
-            </div>
+            @include('errors')
 
         </form>
     </div>

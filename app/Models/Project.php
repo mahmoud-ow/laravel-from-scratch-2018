@@ -16,4 +16,8 @@ class Project extends Model
         return $this->hasMany('App\Models\Task', 'project_id', 'id');
     }
 
+    public function addTask($task)
+    {
+        $this->tasks()->create($task);
+    }
 }
