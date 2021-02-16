@@ -3,12 +3,17 @@
 use App\Http\Controllers\CompletedTaskscontroller;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTasksController;
+use App\Models\Example;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Route;
 
 
+app()->singleton('Example', function(){
+    return app('\App\Models\Example');
+});
 
 Route::get('/', function () {
-    return view('welcome');
+    dd( app('Example'), app('Example') );
 });
 
 
