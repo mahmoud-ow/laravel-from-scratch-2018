@@ -8,14 +8,6 @@ use Illuminate\Http\Request;
 
 class ProjectTasksController extends Controller
 {
-    public function update(Task $task)
-    {
-
-        $task->update([
-            'completed' => request()->has('completed')
-        ]);
-        return redirect()->back();
-    }
 
 
     public function store(Project $project)
@@ -26,6 +18,16 @@ class ProjectTasksController extends Controller
         ]);
 
         $project->addTask($attribues);
+        return back();
+    }
+
+
+
+    public function update(Task $task)
+    {
+        $method = request()->has('completed') ? 'complete' : 'incomplete';
+        $task->$method();
+
         return back();
     }
 }
