@@ -28,8 +28,10 @@
             <div class="my-3">
                 @foreach ($project->tasks as $task)
 
-                    <form method="POST" action="/tasks/{{ $task->id }}">
-                        @method("PATCH")
+                    <form method="POST" action="/completed-tasks/{{ $task->id }}">
+                        @if($task->completed)
+                        @method('DELETE')
+                        @endif
                         @csrf
                         <div class="form-check">
                             <input {{ $task->completed ? 'checked' : '' }} class="form-check-input" type="checkbox"
